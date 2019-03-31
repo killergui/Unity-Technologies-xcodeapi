@@ -1421,5 +1421,11 @@ namespace UnityEditor.iOS.Xcode.Custom
             project.project.UpdateVars();
 
         }
+
+        public void SetSystemCapabilities (string target, string key, string value)
+        {
+            project.project.SetSystemCapabilities (target, key, value);
+        }
+
     }
 } // namespace UnityEditor.iOS.Xcode

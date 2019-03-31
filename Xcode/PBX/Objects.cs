@@ -1016,6 +1016,32 @@ namespace UnityEditor.iOS.Xcode.Custom.PBX
                 }
             }
         }
+        public void SetSystemCapabilities (string target, string key, string value)
+        {
+            if (m_Properties.Contains ("attributes")) {
+                var attributes = m_Properties ["attributes"].AsDict ();
+                var targetAttributes = attributes ["TargetAttributes"].AsDict ();
+                if (targetAttributes.Contains (target)) {
+                    var targetDict = targetAttributes [target].AsDict ();
+                    if (!targetDict.Contains ("SystemCapabilities")) {
+                        var dict = targetDict.CreateDict ("SystemCapabilities");
+                        var record = dict.CreateDict (key);
+                        record.SetString ("enabled", value);
+                    } else {
+                        var dict = targetDict ["SystemCapabilities"].AsDict ();
+                        if (!dict.Contains (key)) {
+                            var record = dict.CreateDict (key);
+                            record.SetString ("enabled", value);
+                        } else {
+                            var record = dict [key].AsDict ();
+                            record.SetString ("enabled", value);
+                        }
+                    }
+                } else {
+                    //error
+                }
+            }
+        }
     }
 
 } // namespace UnityEditor.iOS.Xcode
