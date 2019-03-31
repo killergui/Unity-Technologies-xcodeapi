@@ -1,9 +1,13 @@
 ﻿using System.IO;
 using UnityEngine;
 using UnityEditor;
-using UnityEditor.iOS.Xcode;
+using UnityEditor.iOS.Xcode.Custom;
+//using UnityEditor.iOS.Xcode;高版本的xcode增加了一些支持，低版本有人重写了，所以就用custom
+//
 using UnityEditor.Callbacks;
 using System.Collections;
+
+//以下为示例参考
 
 public class XcodeSettingsPostProcesser
 {
@@ -36,6 +40,9 @@ public class XcodeSettingsPostProcesser
 
         // Sample of adding OPTIONAL framework
         pbxProject.AddFrameworkToProject (targetGuid, "SafariServices.framework", true);
+
+        //设置苹果商店的一些功能，Capabilities
+        pbxProject.SetSystemCapabilities(targetGuid, "com.apple.Push", "1");
 
         // Sample of setting compile flags
         var guid = pbxProject.FindFileGuidByProjectPath ("Classes/UI/Keyboard.mm");
