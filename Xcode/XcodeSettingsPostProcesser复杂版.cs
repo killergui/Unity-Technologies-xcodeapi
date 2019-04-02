@@ -58,6 +58,37 @@ public class XcodeSettingsPostProcesser
         proj.SetSystemCapabilities(target, "com.apple.Push", "1");
         proj.SetSystemCapabilities(target, "com.apple.GameCenter", "1");
         proj.SetSystemCapabilities(target, "com.apple.InAppPurchase", "1");
+
+        //以下为旧版本可以设置的内置功能字符串，有很多功能不知只是设置开启，有其他参数需要配置，将来使用时最好升级xcode版本
+        /*
+        "com.apple.AccessWiFi",
+        "com.apple.ApplePay",
+        "com.apple.ApplicationGroups.iOS",
+        "com.apple.AutoFillCredentialProvider",
+        "com.apple.BackgroundModes",
+        "com.apple.ClassKit",
+        "com.apple.DataProtection",
+        "com.apple.GameCenter.iOS",
+        "com.apple.GameControllers.appletvos",
+        "com.apple.HealthKit",
+        "com.apple.HomeKit",
+        "com.apple.HotspotConfiguration",
+        "com.apple.InAppPurchase",
+        "com.apple.InterAppAudio",
+        "com.apple.Keychain",
+        "com.apple.Maps.iOS",
+        "com.apple.Multipath",
+        "com.apple.NearFieldCommunicationTagReading",
+        "com.apple.NetworkExtensions.iOS",
+        "com.apple.Push",
+        "com.apple.SafariKeychain",
+        "com.apple.Siri",
+        "com.apple.VPNLite",
+        "com.apple.WAC",
+        "com.apple.Wallet",
+        "com.apple.iCloud"
+        */
+
         proj.RemoveFilesByProjectPathRecursive("Libraries/Plugins/Android"); //移除某个目录,根据开发者需求
 
         proj.AddBuildProperty(target, "HEADER_SEARCH_PATHS", Application.dataPath + "/_PlatformAssets/Platforms/xxxxxxxx");//修改Xcode索引目录

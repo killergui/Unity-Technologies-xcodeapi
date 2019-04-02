@@ -37,6 +37,7 @@ public class XcodeSettingsPostProcesser
 
         // Sample of adding REQUIRED framwrok
         pbxProject.AddFrameworkToProject (targetGuid, "Security.framework", false);
+        pbxProject.AddFrameworkToProject(targetGuid, "AdSupport.framework", false);
 
         // Sample of adding OPTIONAL framework
         pbxProject.AddFrameworkToProject (targetGuid, "SafariServices.framework", true);
